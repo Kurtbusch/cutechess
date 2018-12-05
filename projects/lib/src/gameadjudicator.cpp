@@ -28,7 +28,8 @@ GameAdjudicator::GameAdjudicator()
 	  m_resignMoveCount(0),
 	  m_resignScore(0),
 	  m_maxGameLength(0),
-	  m_tbEnabled(false)
+	  m_tbEnabled(false),
+          m_tbDrawOnly(false)
 {
 	m_resignScoreCount[0] = 0;
 	m_resignScoreCount[1] = 0;
@@ -61,9 +62,10 @@ void GameAdjudicator::setMaximumGameLength(int moveCount)
 	m_maxGameLength = moveCount;
 }
 
-void GameAdjudicator::setTablebaseAdjudication(bool enable)
+void GameAdjudicator::setTablebaseAdjudication(bool enable, bool drawOnly)
 {
 	m_tbEnabled = enable;
+	m_tbDrawOnly = drawOnly;
 }
 
 void GameAdjudicator::addEval(const Chess::Board* board, const MoveEvaluation& eval)
@@ -74,7 +76,9 @@ void GameAdjudicator::addEval(const Chess::Board* board, const MoveEvaluation& e
 	if (m_tbEnabled)
 	{
 		m_result = board->tablebaseResult();
-		if (!m_result.isNone())
+		if (!m_result.isNone() && !m_tbDrawOnly)
+			return;
+		else if(m_result.isDraw())
 			return;
 	}
 
