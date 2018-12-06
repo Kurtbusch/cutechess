@@ -71,7 +71,7 @@ class LIB_EXPORT GameAdjudicator
 		 * If \a enable is true then games are adjudicated if the
 		 * latest position is found in the tablebases.
 		 */
-		void setTablebaseAdjudication(bool enable);
+		void setTablebaseAdjudication(bool enable, bool drawOnly);
 
 		/*!
 		 * Adds a new move evaluation to the adjudicator.
@@ -103,6 +103,7 @@ class LIB_EXPORT GameAdjudicator
 		int m_resignScoreCount[2];
 		int m_maxGameLength;
 		bool m_tbEnabled;
+		bool m_tbDrawOnly;
 		Chess::Result m_result;
 };
 
