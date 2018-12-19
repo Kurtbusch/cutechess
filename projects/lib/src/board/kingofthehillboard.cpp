@@ -38,12 +38,14 @@ QString KingOfTheHillBoard::variant() const
 
 Result KingOfTheHillBoard::result()
 {
-	if (kingInCenter(Side::White))
+	Square ksq = chessSquare(kingSquare(Side::White));
+	if (ksq.rank() == 7)
 		return Result(Result::Win, Side::White,
-			      tr("White wins with king in the center"));
-	if (kingInCenter(Side::Black))
+			      tr("White wins with KTOS"));
+	ksq = chessSquare(kingSquare(Side::Black));
+	if (ksq.rank() == 0)
 		return Result(Result::Win, Side::Black,
-			      tr("Black wins with king in the center"));
+			      tr("Black wins with KTOS"));
 	return StandardBoard::result();
 }
 
