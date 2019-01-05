@@ -247,7 +247,7 @@ EngineMatch* parseMatch(const QStringList& args, QObject* parent)
 	parser.addOption("-resign", QVariant::StringList);
 	parser.addOption("-maxmoves", QVariant::Int, 1, 1);
 	parser.addOption("-tb", QVariant::String, 1, 1);
-	parser.addOption("-tbdrawonly", QVariant::String, 1, 1);
+	parser.addOption("-tbdrawonly", QVariant::Bool, 0, 0);
 	parser.addOption("-tbpieces", QVariant::Int, 1, 1);
 	parser.addOption("-tbignore50", QVariant::Bool, 0, 0);
 	parser.addOption("-event", QVariant::String, 1, 1);
